@@ -11,6 +11,13 @@ sensuserver:
     - redis
     - rabbitmq
     - sensuapi:api
+client:
+  image: sstarcher/sensu
+  command: client
+  environment:
+    CLIENT_SUBSCRIPTIONS: all,default,production
+  links:
+    - rabbitmq
 uchiwa:
   image: uchiwa/uchiwa
   volumes:
