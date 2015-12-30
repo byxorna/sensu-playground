@@ -1,0 +1,13 @@
+{
+  "handlers": {
+    "pagerduty": {
+      "type": "pipe",
+      "command": "/usr/bin/handler-pagerduty.rb",
+      "severities": ["critical", "unknown"]
+    },
+    "default": {
+      "type": "set",
+      "handlers": [ "debug", "pagerduty" ]
+    }
+  }
+}

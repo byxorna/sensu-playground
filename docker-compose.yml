@@ -13,6 +13,8 @@ sensuserver:
     - sensuapi:api
   volumes:
     - './server_checks.json:/etc/sensu/conf.d/server_checks.json:ro'
+    - './server_handlers.json:/etc/sensu/conf.d/server_handlers.json:ro'
+    - './handler-pagerduty.rb:/usr/bin/handler-pagerduty.rb:ro'
 client:
   image: sstarcher/sensu
   command: client
