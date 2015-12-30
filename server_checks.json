@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "test1": {
+      "command": "check-test1.sh",
+      "subscribers": [
+        "production"
+      ],
+      "interval": 60
+    }
+  }
+}

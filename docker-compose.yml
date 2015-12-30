@@ -11,6 +11,8 @@ sensuserver:
     - redis
     - rabbitmq
     - sensuapi:api
+  volumes:
+    - './server_checks.json:/etc/sensu/conf.d/server_checks.json:ro'
 client:
   image: sstarcher/sensu
   command: client
@@ -18,6 +20,9 @@ client:
     CLIENT_SUBSCRIPTIONS: all,default,production
   links:
     - rabbitmq
+  # ghetto hack to place some check binaries on the clients
+  volumes:
+    - './check-test1.sh:/usr/bin/check-test1.sh:ro'
 uchiwa:
   image: uchiwa/uchiwa
   volumes:
