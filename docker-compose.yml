@@ -1,0 +1,24 @@
+sensuapi:
+  image: sstarcher/sensu
+  command: api
+  links:
+    - rabbitmq
+    - redis
+sensuserver:
+  image: sstarcher/sensu
+  command: server
+  links:
+    - redis
+    - rabbitmq
+    - sensuapi:api
+uchiwa:
+  image: uchiwa/uchiwa
+  volumes:
+    - './uchiwa.json:/config/config.json:ro'
+  links:
+    - sensuapi:api
+  ports: ['80:3000']
+redis:
+  image: redis
+rabbitmq:
+  image: rabbitmq
